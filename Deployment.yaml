@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mario-deployment
+spec:
+  replicas: 1  # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: mario
+  template:
+    metadata:
+      labels:
+        app: mario
+    spec:
+      containers:
+      - name: mario-container
+        image: avaeusk8sacrpoc.azurecr.io/react-svc:latest
+        ports:
+        - containerPort: 3000
+      imagePullSecrets: 
+        - name: image-pull-secrets
